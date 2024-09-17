@@ -23,5 +23,10 @@ public class CuentaCheque extends Cuenta {
                 + getFechaApertura() + ", getSaldo()=" + getSaldo() + ", getFechaCancelacion()=" + getFechaCancelacion()
                 + "]";
     }
+
+    @Override
+    public int compareTo(Cuenta o) {
+        return this.getNumero() - o.getNumero();
+    }
     
 }

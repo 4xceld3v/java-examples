@@ -1,6 +1,6 @@
 package com.axceldev.banca_electronica.domain;
 
-public abstract class Cuenta {
+public abstract class Cuenta  implements Comparable<Cuenta> {
     
     private int numero;
     private String fechaApertura;

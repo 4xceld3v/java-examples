@@ -2,7 +2,7 @@ package com.axceldev.banca_electronica.domain;
 
 import java.util.ArrayList;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
 
     private int numero;
     private String nombre;
@@ -84,5 +84,10 @@ public class Cliente {
     public String toString() {
         return "Cliente [numero=" + numero + ", nombre=" + nombre + ", domicilio=" + domicilio + ", rfc=" + rfc
                 + ", telefono=" + telefono + ", cuenta=" + cuentas + ", fechaNacimiento=" + fechaNacimiento + "]";
+    }
+
+    @Override
+    public int compareTo(Cliente o) {
+        return this.nombre.compareToIgnoreCase(o.getNombre());
     }
 }
