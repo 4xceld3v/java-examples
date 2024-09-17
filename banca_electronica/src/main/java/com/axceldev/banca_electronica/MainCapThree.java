@@ -8,6 +8,7 @@ import com.axceldev.banca_electronica.domain.Cliente;
 import com.axceldev.banca_electronica.domain.CuentaAhorro;
 import com.axceldev.banca_electronica.domain.CuentaCheque;
 import com.axceldev.banca_electronica.domain.Domicilio;
+import com.axceldev.banca_electronica.helper.OrdenamientoClientes;
 import com.axceldev.banca_electronica.helper.OrdenamientoCuentas;
 import com.axceldev.banca_electronica.interfaces.ServicioClientes;
 import com.axceldev.banca_electronica.interfaces.ServicioCuentas;
@@ -111,7 +112,43 @@ public class MainCapThree {
             System.out.println(cuentaAhorro1);
         }
 
-        
+        OrdenamientoClientes ordenamientoClientes = new OrdenamientoClientes();
+
+        Set<Cliente> clientes = new TreeSet<>(ordenamientoClientes);
+
+        clientes.add(new Cliente(
+            1,
+            "Juan Pérez",
+            domicilioCliente,
+            "RFC123456",
+            "1234567890",
+            "01/01/1990"
+        ));
+
+        clientes.add(new Cliente(
+            2,
+            "María López",
+            domicilioCliente,
+            "RFC123456",
+            "1234567890",
+            "01/01/1990"
+        ));
+
+        clientes.add(new Cliente(
+            3,
+            "Pedro Ramírez",
+            domicilioCliente,
+            "RFC123456",
+            "1234567890",
+            "01/01/1990"
+        ));
+
+        System.out.println("Clientes ordenados por número");
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente);
+        }
+
+
 
 
 
