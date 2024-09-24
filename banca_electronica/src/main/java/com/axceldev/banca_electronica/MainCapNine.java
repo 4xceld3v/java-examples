@@ -8,17 +8,23 @@ import java.util.ArrayList;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.axceldev.banca_electronica.domain.CuentaAhorro;
 import com.axceldev.banca_electronica.domain.CuentaCheque;
 
-public class MainCapEeight {
+public class MainCapNine {
 
     private static final String CUENTA_AHORROS = "CA";
     private static final String CUENTA_CHEQUES = "CC";
     private static final String PATH = "src\\\\main\\\\resources\\\\files\\\\cuentas.txt";
 
     public static void main(String[] args) {
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
     
         List<String> cuentas = leerArchivo(PATH);
         for (String cuenta : cuentas) {
@@ -26,8 +32,10 @@ public class MainCapEeight {
                 System.out.println("Cuenta de ahorros: ");
                 String datos = extraerDatos(cuenta);
                 String[] dato = datos.split( ",");
+                String fechaAperturaString = convertirFecha(dato[1].trim(), inputFormat, formatter);
                 CuentaAhorro cuentaAhorro = new CuentaAhorro(
                     Integer.parseInt(dato[0].trim()),
+                    fechaAperturaString,
                     Double.parseDouble(dato[2].trim()),
                     Double.parseDouble(dato[3].trim())
                 );
@@ -36,8 +44,10 @@ public class MainCapEeight {
                 System.out.println("Cuenta de cheques: ");
                 String datos = extraerDatos(cuenta);
                 String[] dato = datos.split( ",");
+                String fechaAperturaString = convertirFecha(dato[1].trim(), inputFormat, formatter);
                 CuentaCheque cuentaCheque = new CuentaCheque(
                     Integer.parseInt(dato[0].trim()),
+                    fechaAperturaString,
                     Double.parseDouble(dato[2].trim()),
                     Double.parseDouble(dato[3].trim())
                 );
@@ -67,6 +77,16 @@ public class MainCapEeight {
             return matcher.group(1);
         }
         return "";
+    }
+
+    public static String convertirFecha(String fecha, SimpleDateFormat inputFormat, SimpleDateFormat outputFormat) {
+        try {
+            Date fechaApertura = inputFormat.parse(fecha);
+            return outputFormat.format(fechaApertura);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }

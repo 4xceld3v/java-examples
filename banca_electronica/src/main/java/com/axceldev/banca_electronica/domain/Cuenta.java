@@ -12,6 +12,12 @@ public abstract class Cuenta  implements Comparable<Cuenta> {
         this.saldo = saldo;
     }
 
+    public Cuenta(int numero, String fechaApertura, double saldo) {
+        this.numero = numero;
+        this.saldo = saldo;
+        this.fechaApertura = fechaApertura;
+    }
+
     public int getNumero() {
         return numero;
     }

@@ -9,6 +9,11 @@ public class CuentaAhorro extends Cuenta {
         this.tasaInteresMensual = tasaInteresMensual;
     }
 
+    public CuentaAhorro(int numero, String fechaApertura, double saldo, double tasaInteresMensual) {
+        super(numero, fechaApertura, saldo);
+        this.tasaInteresMensual = tasaInteresMensual;
+    }
+
     public double getTasaInteresMensual() {
         return tasaInteresMensual;
     }
